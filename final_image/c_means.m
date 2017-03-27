@@ -89,11 +89,5 @@ for i=1:m
 end 
 
 
-h=uint8(h);
-h1=imcomplement(h);
 
-h1=im2bw(h1);
-disp('The final cluster centers are');
-ccc1
-ccc2
 
