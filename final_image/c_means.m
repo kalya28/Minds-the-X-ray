@@ -55,9 +55,6 @@ while(iteration<2)
             else
                 g(i,j)=2;
             end
-        end
-    end
-   
    if max(tmpMatrix)<0.00001
          break;
   else
