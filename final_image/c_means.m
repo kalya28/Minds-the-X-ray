@@ -76,9 +76,7 @@ end
 end
 
 for i=1:m
-    for j=1:n
-         if g(i,j)==2
-            h(i,j)=185;
+    for j=1:n;
              else
              h(i,j)=10;
     end
