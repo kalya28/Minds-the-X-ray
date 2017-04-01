@@ -29,7 +29,7 @@ gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @xray_gui_OpeningFcn, ...
-                   'gui_OutputFcn',  @xray_gui_Outp
+                   'gui_OutputFcn',  @xray_gui_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -45,7 +45,8 @@ end
 
 
 % --- Executes just before xray_gui is made visible.
-function xray_gui_OpeningFcn(hObject, eventdata, handleut args, see OutputFcn.
+function xray_gui_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -68,7 +69,8 @@ function varargout = xray_gui_OutputFcn(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Get default command line= handles.output;
+% Get default command line output from handles structure
+varargout{1} = handles.output;
 
 
 % --- Executes on button press in pushbutton1.
@@ -91,7 +93,8 @@ img=imread(filename);
      msgbox(sprintf('Error'),'Error','Error');
      return
  end
-  axes(handles.axes1);le('original image');
+  axes(handles.axes1);
+imshow(img),title('original image');
 
 % --- Executes during object creation, after setting all properties.
 function pushbutton1_CreateFcn(hObject, eventdata, handles)
@@ -181,7 +184,7 @@ if numel(HoughPeaks) > 1;
     for m = 1:numel(HoughPeaks);
 
         boneKernel = strel('line', HoughConvolutionLength, T(HoughPeaks(m)));
-        kern = double(bwmorph(boate', HoughConvolutionDilate));
+        kern = double(bwmorph(boneKernel.getnhood(), 'dilate', HoughConvolutionDilate));
         BreakStack(:,:,m) = imfilter(edgeImg, kern).*edgeImg;
     end
 
