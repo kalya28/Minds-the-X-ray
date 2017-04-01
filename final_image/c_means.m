@@ -55,6 +55,9 @@ while(iteration<2)
             else
                 g(i,j)=2;
             end
+        end
+    end
+   
    if max(tmpMatrix)<0.00001
          break;
   else
@@ -76,7 +79,9 @@ end
 end
 
 for i=1:m
-    for j=1:n;
+    for j=1:n
+         if g(i,j)==2
+            h(i,j)=185;
              else
              h(i,j)=10;
     end
@@ -84,5 +89,11 @@ for i=1:m
 end 
 
 
+h=uint8(h);
+h1=imcomplement(h);
 
+h1=im2bw(h1);
+disp('The final cluster centers are');
+ccc1
+ccc2
 
